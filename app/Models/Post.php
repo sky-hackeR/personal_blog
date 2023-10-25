@@ -17,5 +17,5 @@ class Post extends Model
         'description', 
         'post_body',
         'slug',
-    ];
+    ];   
 }
