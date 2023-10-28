@@ -14,4 +14,8 @@ class BreakingNews extends Model
         'post_id',
         'title', 
     ];
+
+    public function post(){
+        return $this->belongsTo(Posts::class, 'post_id', 'id');
+    }
 }

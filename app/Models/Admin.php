@@ -38,6 +38,11 @@ class Admin extends Authenticatable
      * @param  string  $token
      * @return void
      */
+
+    public function post(){
+        return $this->hasMany(Posts::class, 'post_id', 'id');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPassword($token));
