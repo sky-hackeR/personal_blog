@@ -18,10 +18,10 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
                         
-                        <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}"">
+                        <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="form-label" for="password-input">Password</label>
                             <div class="position-relative auth-pass-inputgroup">
-                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input"  name="password" aria-describedby="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input"  name="password" aria-describedby="passwordInput" required>
                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                 
                                 @if ($errors->has('password'))
@@ -37,7 +37,7 @@
                         <div class="mb-3 {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <label class="form-label" for="confirm-password-input">Confirm Password</label>
                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Confirm password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="confirm-password-input" name="password_confirmation" required>
+                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Confirm password" id="confirm-password-input" name="password_confirmation" required>
                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="confirm-password-input"><i class="ri-eye-fill align-middle"></i></button>
 
                                 @if ($errors->has('password_confirmation'))
