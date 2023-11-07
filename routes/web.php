@@ -45,7 +45,12 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/password/reset', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.reset');
   Route::get('/password/reset/{token}', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'showResetForm']);
   
-  Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'home'])->name('home')->middleware(['auth:admin']);
+  Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'home'])->name('home');
+  Route::get('/categories', [App\Http\Controllers\Admin\HomeController::class, 'categories'])->name('categories');
+  Route::get('/blogposts', [App\Http\Controllers\Admin\HomeController::class, 'blogposts'])->name('blogposts');
+  Route::get('/breakingnews', [App\Http\Controllers\Admin\HomeController::class, 'breakingnews'])->name('breakingnews');
+  Route::get('/newsletters', [App\Http\Controllers\Admin\HomeController::class, 'newsletters'])->name('newsletters');
+  Route::get('/users', [App\Http\Controllers\Admin\HomeController::class, 'users'])->name('users');
 
 });
 
