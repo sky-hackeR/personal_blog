@@ -49,11 +49,13 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('/categories', [App\Http\Controllers\Admin\HomeController::class, 'categories'])->name('categories');
   Route::post('/addCategory', [App\Http\Controllers\Admin\HomeController::class, 'addCategory'])->name('addCategory');
+  
 
   Route::get('/blogposts', [App\Http\Controllers\Admin\HomeController::class, 'blogposts'])->name('blogposts');
 
 
   Route::get('/breakingnews', [App\Http\Controllers\Admin\HomeController::class, 'breakingnews'])->name('breakingnews');
+  Route::post('/addbreakingNews', [App\Http\Controllers\Admin\HomeController::class, 'addbreakingNews'])->name('addbreakingNews');
 
 
   Route::get('/newsletters', [App\Http\Controllers\Admin\HomeController::class, 'newsletters'])->name('newsletters');

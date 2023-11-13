@@ -70,6 +70,81 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <hr>
+                                        <div class="card-body pt-3 mt-3">
+                                            <table id="button-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Category</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($categories as $categories)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $categories->category }}</td>
+                                                            <td>
+                                                                <div class="dropdown d-inline-block">
+                                                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <i class="ri-more-fill align-middle"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                                        <li>
+                                                                            <a class="dropdown-item edit-item-btn">
+                                                                                <i class="ri-pencil-fill align-bottom me-2 text-success"></i> Edit
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item remove-item-btn" data-category-id="{{ $categories->id }}">
+                                                                                <i class="ri-delete-bin-fill align-bottom me-2 text-danger"></i> Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header bg-light p-3">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                                                            </div>
+                                                                            <form class="tablelist-form" autocomplete="off" action="{{url ('/admin/addCategory')}}" method="POST">
+                                                                                @csrf
+                                                                                <div class="modal-body">
+                                                                                    <input type="hidden" id="id-field"/>
+                                    
+                                                                                    <div class="mb-3">
+                                                                                        <label for="addCategory" class="form-label">Category Name</label>
+                                                                                        <input type="text" id="category" name="category" class="form-control" placeholder="Enter category name" required />
+                                                                                    </div>
+                                    
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <div class="hstack gap-2 justify-content-end">
+                                                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                                        <button type="submit" class="btn btn-success" id="add-btn">Add Category</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+
                         </div>
                     </div>
 
