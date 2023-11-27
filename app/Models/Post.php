@@ -17,6 +17,7 @@ class Post extends Model
         'description', 
         'post_body',
         'slug',
+        'image',
     ];   
 
     public function click(){

@@ -56,7 +56,7 @@
 
                                                 <div class="mb-3">
                                                     <label for="addCategory" class="form-label">Category Name</label>
-                                                    <input type="text" id="category" name="category" class="form-control" placeholder="Enter category name" required />
+                                                    <input type="text" id="category" name="category" class="form-control" placeholder="Enter category name" required autofocus />
                                                 </div>
 
                                             </div>
@@ -75,8 +75,8 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <hr>
-                                        <div class="card-body pt-3 mt-3">
-                                            <table id="button-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                        <div class="card-body pt-0 mt-1">
+                                            <table id="buttons-datatables" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
@@ -96,14 +96,15 @@
                                                                     </button>
                                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                                         <li>
-                                                                            <a class="dropdown-item edit-item-btn">
-                                                                                <i class="ri-pencil-fill align-bottom me-2 text-success"></i> Edit
-                                                                            </a>
+                                                                            <button id="editBtn" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#showEditModal{{$categories->id}}">
+                                                                                <i class="ri-pencil-fill align-bottom me-2 text-success"></i> 
+                                                                                Edit
+                                                                            </button>
                                                                         </li>
                                                                         <li>
-                                                                            <a class="dropdown-item remove-item-btn" data-category-id="{{ $categories->id }}">
+                                                                            <button id="deleteButton" class="dropdown-item remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{$categories->id}}">
                                                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-danger"></i> Delete
-                                                                            </a>
+                                                                            </button>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -137,6 +138,57 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                        <div class="modal fade" id="showEditModal{{$categories->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-light p-3">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">EDIT CATEGORY</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                                                                    </div>
+                                                                    <form method="POST" action="{{url('/admin/updateCategory')}}" class="tablelist-form" autocomplete="off">
+                                                                        @csrf
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" id="category_id" name="category_id" value="{{$categories->id}}" />
+                
+                                                                            <div class="mb-3">
+                                                                                <label for="customername-field" class="form-label">Category Name</label>
+                                                                                <input name="category" type="text" id="category" value="{{$categories->category}}" class="form-control" required />
+                                                                            </div>
+                                
+                                                                            
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <div class="hstack gap-2 justify-content-end">
+                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-success" id="add-btn">Update Category</button>
+                                                                                <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal fade flip" id="deleteModal{{$categories->id}}" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body p-5 text-center">
+                                                                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px"></lord-icon>
+                                                                        <div class="mt-4 text-center">
+                                                                            <form action="{{url('/admin/deleteCategory')}}" method="POST">
+                                                                                @csrf
+                                                                                <h4>You are about to delete the {{$categories->category}} category?</h4>
+                                                                                <p class="text-muted fs-15 mb-4">Deleting this category will remove all of your information from our database.</p>
+                                                                                <input type="hidden" name="category_id" id="category_id" value="{{$categories->id}}">
+                                                                                <div class="hstack gap-2 justify-content-center remove">
+                                                                                    <button type="button" class="btn btn-link link-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Cancel</button>
+                                                                                    <button class="btn btn-danger" id="delete-record" type="submit">Yes, Delete It</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
                                                 </tbody>
                                             </table>
