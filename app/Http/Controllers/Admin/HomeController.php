@@ -25,6 +25,8 @@ class HomeController extends Controller
         return view('admin.home');
     }
 
+
+    // CATEGORY LOGIC
     public function categories(){
 
         $categories = Category::all();
@@ -53,11 +55,7 @@ class HomeController extends Controller
 
         alert()->success('Good Job', 'Category added successfully')->persistent('Close');
         return redirect()->back();
-
     }
-
-
-
     public function updateCategory(Request $request){
         $category = Category::find($request->input('category_id'));
         $category->category = $request->input('category');
@@ -109,8 +107,6 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
-
-
         public function blogposts(){
         $blogposts = Post::with('category')->get();
         $categories = Category::all();
@@ -121,11 +117,7 @@ class HomeController extends Controller
     }
 
 
-
-
-
-
-    // Blog post LOGIC
+    // BLOGPOST LOGIC
     public function addPost(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
@@ -159,17 +151,14 @@ class HomeController extends Controller
 
         ]);
         if($createPost = Post::create($newPost)){
-            Alert::success('Success!','Post submitted successfully')->persistent('Close');
+            Alert::success('Good Job!','Post added successfully')->persistent('Close');
             return redirect()->back();
         };
         Alert::error('Oops!', 'Submission Successful!')->persistent('Close');
     }
 
 
-
-
-
-    // Breaking News LOGIC
+    // BREAKING NEWS LOGIC
     public function breakingnews(){
 
         $breakingnews = BreakingNews::all();
@@ -196,11 +185,16 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+
+
+    // NEWSLETTER LOGIC
     public function newsletters(){
 
         return view('admin.newsletters');
     }
 
+
+    //USERS LOGIC
     public function users(){
 
         return view('admin.users');
